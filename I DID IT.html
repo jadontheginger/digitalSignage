@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tech Presentation</title>
+	<style>
+		html, body {
+			overflow:hidden;
+			background: black;
+			padding: 0;
+			margin: 0;
+			width: 100%;
+			height: 100%;
+		}
+		html, body, div{
+			padding: 0;
+			margin: 0;
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+	<script>
+		var myFrame = prompt("What would you like your signage to be? (Youtube or Google Presentation.)")
+		if(myFrame.substring(0,22) === "http://www.youtube.com"){
+			var youtubeId = myFrame.substring(31,42);
+			myFrame = "http://www.youtube.com/embed/" + youtubeId + "?autoplay=1&loop=1&playlist=" + youtubeId;
+		}else if(myFrame.substring(0,57) === "https://docs.google.com/a/edtools.psd401.net/presentation"){
+			myFrame = myFrame.substring(0,104) + "/embed";
+		}else if(myFrame.substring(0,49) === "https://docs.google.com/a/edtools.psd401.net/file"){
+			alert("WOAH! Thats a file not a presentation!");
+		}else{
+			alert("I DON'T KNOW WHAT THAT MEANS");
+		}
+		window.onload = function(){
+		var iframe = document.createElement('iframe');
+		iframe.frameBorder=0;
+		iframe.width="100%";
+		iframe.height="100%";
+		iframe.id="techPresenation";
+		iframe.setAttribute("src", myFrame);
+		document.getElementById("iHope").appendChild(iframe);
+		}
+		var refreshMinutes = 30;
+		var timer=setInterval(function(){refreshFrame()}, refreshMinutes*60*1000);
+		function refreshFrame()
+		{
+			var iframe = document.getElementById('techPresentation');
+			var iframeURL = iframe.src;
+			iframe.src = iframeURL;
+		}
+		
+	</script>
+</head>
+<body>
+<div id="iHope"></div>
+</body>
+</html>
